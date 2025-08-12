@@ -1,1 +1,3 @@
 /certs/local.*
+
+**/__pycache__

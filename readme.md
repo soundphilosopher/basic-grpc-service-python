@@ -32,11 +32,27 @@
 
 # call hello
 - grpcurl -d '{"message": "World"}' 127.0.0.1:8443 basic.v1.BasicService/Hello
+
+# call talk
+~ cat <<EOM | grpcurl -d @ 127.0.0.1:8443 basic.v1.BasicService/Talk
+{
+  "message": "Hello"
+}
+{
+  "message": "How are you?"
+}
+{
+  "message": "Bye!"
+}
+EOM
+
+# call background
+~ grpcurl -d '{"processes": 5}' 127.0.0.1:8443 basic.v1.BasicService/Background
 ```
 
 ## ToDo's
 
-- [ ] Implement talk "chatbot"
-- [ ] Implement background tasks
+- [x] Implement talk "chatbot"
+- [x] Implement background tasks
 - [ ] Add all necessary information to README.md
 - [ ] Add LICENSE.md file
