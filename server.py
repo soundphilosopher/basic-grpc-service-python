@@ -2,11 +2,17 @@ import asyncio
 import signal
 import datetime as dt
 import uuid
-
+import threading
 import grpc
+import logging
+
+from time import sleep
+from concurrent import futures
 from grpc_reflection.v1alpha import reflection
+from grpc_health.v1 import health_pb2_grpc, health, health_pb2
 from google.protobuf.timestamp import Timestamp
 from google.protobuf.any import Any
+from pythonjsonlogger.json import JsonFormatter
 
 # Generated modules (paths may differ based on your buf out dir)
 from basic.v1 import basic_pb2_grpc, basic_pb2
@@ -65,6 +71,32 @@ class BasicServiceImpl(basic_pb2_grpc.BasicServiceServicer):
         # final “complete” event:
         # yield svc_pb2.BackgroundResponse(cloud_event=final_evt)
 
+def _toggle_health(health_servicer: health.HealthServicer, service: str):
+    next_status = health_pb2.HealthCheckResponse.SERVING
+    while True:
+        if next_status == health_pb2.HealthCheckResponse.SERVING:
+            next_status = health_pb2.HealthCheckResponse.NOT_SERVING
+        else:
+            next_status = health_pb2.HealthCheckResponse.SERVING
+
+        health_servicer.set(service, next_status)
+        sleep(5)
+
+def _configure_health_server(server: grpc.aio.Server):
+    health_servicer = health.HealthServicer(
+        experimental_non_blocking=True,
+        experimental_thread_pool=futures.ThreadPoolExecutor(max_workers=10),
+    )
+    health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
+
+    # Use a daemon thread to toggle health status
+    toggle_health_status_thread = threading.Thread(
+        target=_toggle_health,
+        args=(health_servicer, basic_pb2.DESCRIPTOR.services_by_name['BasicService'].full_name),
+        daemon=True,
+    )
+    toggle_health_status_thread.start()
+
 async def serve() -> None:
     # TLS credentials (as you already have)
     with open("certs/local.crt", "rb") as f:
@@ -84,10 +116,13 @@ async def serve() -> None:
     # add reflection
     reflection.enable_server_reflection([basic_pb2.DESCRIPTOR.services_by_name['BasicService'].full_name], server)
 
+    # add health check
+    _configure_health_server(server)
+
     server.add_secure_port("127.0.0.1:8443", server_creds)
 
     await server.start()
-    print("gRPC server listening on https://127.0.0.1:8443 (HTTP/2)")
+    logging.info("gRPC server listening on https://127.0.0.1:8443 (HTTP/2)")
 
     # ---- graceful shutdown wiring ----
     stop_event = asyncio.Event()
@@ -109,11 +144,21 @@ async def serve() -> None:
     # Otherwise we wait until a signal triggers the event.
     await stop_event.wait()
 
-    print("Shutting down gracefully... (waiting up to 10s for in-flight RPCs)")
+    logging.info("Shutting down gracefully... (waiting up to 10s for in-flight RPCs)")
     # grace=N means: stop accepting new RPCs, allow up to N seconds for
     # existing RPCs/streams to complete before forcefully cancelling.
     await server.stop(grace=10.0)
-    print("Shutdown complete.")
+    logging.info("Shutdown complete.")
 
 if __name__ == "__main__":
+    json_log_handler = logging.StreamHandler()
+    formatter = JsonFormatter(
+        "{levelname}{message}{asctime}",
+        style="{",
+        rename_fields={"levelname": "level", "asctime": "time"}
+    )
+    json_log_handler.setFormatter(formatter)
+
+    logging.basicConfig(level=logging.INFO, handlers=[json_log_handler])
+
     asyncio.run(serve())
