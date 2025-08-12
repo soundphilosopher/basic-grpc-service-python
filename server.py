@@ -19,18 +19,19 @@ class BasicServiceImpl(basic_pb2_grpc.BasicServiceServicer):
             greeting = f"Hello, {request.message}"
         )
 
-        service_pb2.DESCRIPTOR.message_types_by_name['HelloResponse']
-
         any = Any()
         any.Pack(event)
+
+        ts = Timestamp()
+        ts.FromDatetime(dt.datetime.now(dt.timezone.utc))
 
         cloudevent = CloudEvent(
             id=str(uuid.uuid4()),
             spec_version="v1.0",
             source="basic.v1.BasicService/Hello",
-            type="basic.service.v1.HelloResponse",
+            type=service_pb2.DESCRIPTOR.message_types_by_name['HelloResponse'].full_name,
             attributes={
-                "time": CloudEvent.CloudEventAttributeValue(ce_timestamp=Timestamp().FromDatetime(dt.datetime.now(dt.timezone.utc)))
+                "time": CloudEvent.CloudEventAttributeValue(ce_timestamp=ts),
             },
             proto_data=any,
         )
@@ -49,7 +50,9 @@ class BasicServiceImpl(basic_pb2_grpc.BasicServiceServicer):
     async def Background(self, request: service_pb2.BackgroundRequest, context: grpc.aio.ServicerContext):
         # Server-streaming: emit periodic updates
         processes = request.processes or 1
-        start = dt.datetime.now(dt.timezone.utc)
+
+        start = Timestamp()
+        start.FromDatetime(dt.datetime.now(dt.timezone.utc))
 
         for i in range(processes):
             # Build a BackgroundResponse with a CloudEvent if desired
