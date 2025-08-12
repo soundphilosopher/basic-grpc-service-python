@@ -1,0 +1,15 @@
+version: v2
+plugins:
+  # generate python code/procedures
+  - remote: buf.build/connectrpc/python:v0.4.2
+    out: sdk
+  - remote: buf.build/grpc/python:v1.74.1
+    out: sdk
+  - remote: buf.build/protocolbuffers/pyi:v31.1
+    out: sdk
+  - remote: buf.build/protocolbuffers/python:v31.1
+    out: sdk
+  - local: protoc-gen-init_python
+    out: sdk
+    opt:
+      - imports=protobuf+grpcio

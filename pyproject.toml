@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "basic-grpc-service-python"
+version = "0.1.0"
+description = "Python gRPC server/client for BasicService"
+requires-python = ">=3.10"
+dependencies = [
+    "grpcio",
+    "grpcio-reflection",
+    "protobuf~=6.31.1",
+    "types-protobuf~=6.30",
+    "pyright",
+    "protobuf-init",
+]
+
+[tool.setuptools]
+package-dir = { "" = "sdk" } # map top-level packages to ./sdk
+
+[tool.setuptools.packages.find]
+where = ["sdk"]
+include = ["*"]
+
+[tool.pyright]
+exclude = ["**/node_modules", "**/__pycache__", "sdk/**"]
