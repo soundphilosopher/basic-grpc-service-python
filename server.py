@@ -9,7 +9,7 @@ import random
 
 from time import sleep
 from concurrent import futures
-from grpc_reflection.v1alpha import reflection
+from grpc_reflection.v1alpha import reflection, reflection_pb2
 from grpc_health.v1 import health_pb2_grpc, health, health_pb2
 from google.protobuf.timestamp import Timestamp
 from google.protobuf.any import Any
@@ -158,37 +158,6 @@ class BasicServiceImpl(basic_pb2_grpc.BasicServiceServicer):
             logging.exception("Background stream error")
             raise
 
-def _toggle_health(health_servicer: health.HealthServicer, service: str):
-    next_status = health_pb2.HealthCheckResponse.SERVING
-    while True:
-        if next_status == health_pb2.HealthCheckResponse.SERVING:
-            next_status = health_pb2.HealthCheckResponse.NOT_SERVING
-        else:
-            next_status = health_pb2.HealthCheckResponse.SERVING
-
-        health_servicer.set(service, next_status)
-        logging.debug(
-            f"Health status for '{service}' set to "
-            f"{health_pb2.HealthCheckResponse.ServingStatus.Name(next_status)}"
-        )
-
-        sleep(5)
-
-def _configure_health_server(server: grpc.aio.Server):
-    health_servicer = health.HealthServicer(
-        experimental_non_blocking=True,
-        experimental_thread_pool=futures.ThreadPoolExecutor(max_workers=10),
-    )
-    health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
-
-    # Use a daemon thread to toggle health status
-    toggle_health_status_thread = threading.Thread(
-        target=_toggle_health,
-        args=(health_servicer, basic_pb2.DESCRIPTOR.services_by_name['BasicService'].full_name),
-        daemon=True,
-    )
-    toggle_health_status_thread.start()
-
 async def serve() -> None:
     # TLS credentials (as you already have)
     with open("certs/local.crt", "rb") as f:
@@ -209,7 +178,14 @@ async def serve() -> None:
     reflection.enable_server_reflection([basic_pb2.DESCRIPTOR.services_by_name['BasicService'].full_name], server)
 
     # add health check
-    _configure_health_server(server)
+    health_servicer = health.HealthServicer(
+        experimental_non_blocking=True,
+        experimental_thread_pool=futures.ThreadPoolExecutor(max_workers=10),
+    )
+    health_servicer.set("", health_pb2.HealthCheckResponse.UNKNOWN)
+    health_servicer.set(basic_pb2.DESCRIPTOR.services_by_name['BasicService'].full_name, health_pb2.HealthCheckResponse.SERVING)
+
+    health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
 
     server.add_secure_port("127.0.0.1:8443", server_creds)
 
