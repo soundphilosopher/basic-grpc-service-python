@@ -1,3 +1,6 @@
+# local certs
 /certs/local.*
 
+# python artifacts
 **/__pycache__
+/sdk/*.egg-info
