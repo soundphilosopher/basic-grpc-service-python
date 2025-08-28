@@ -30,7 +30,7 @@ This project uses some seriously cool technology:
 | **[Buf](https://buf.build/)** | Protobuf Management | No more protoc headaches! |
 | **[mkcert](https://github.com/FiloSottile/mkcert)** | Local TLS Certs | Trusted certificates in seconds |
 | **[protoc-gen-init_python](https://pypi.org/project/protobuf-init/)** | Python Package Structure | Automatically creates `__init__.py` files |
-| **CloudEvents** | Event Standardization | Industry standard for event data |
+| **[CloudEvents](https://cloudevents.io/)** | Event Standardization | Industry standard for event data |
 
 ## 🚦 Quick Start
 
