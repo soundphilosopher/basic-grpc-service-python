@@ -4,3 +4,6 @@
 # python artifacts
 **/__pycache__
 /sdk/*.egg-info
+
+# mkdocs output
+/site

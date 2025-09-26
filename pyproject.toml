@@ -18,6 +18,20 @@ dependencies = [
     "python-json-logger",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "mkdocs-gen-files",
+    "mkdocs-literate-nav",
+    "mkdocs-section-index",
+]
+
 [tool.setuptools]
 package-dir = { "" = "sdk" } # map top-level packages to ./sdk
 

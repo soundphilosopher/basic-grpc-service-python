@@ -1,0 +1,91 @@
+site_name: 🚀 Basic gRPC Service Documentation
+site_description: A modern Python gRPC service with streaming, async, and CloudEvents
+site_author: The gRPC Service Squad
+site_url: https://soundphilosopher.github.io/basic-grpc-service-python/
+
+repo_name: basic-grpc-service-python
+repo_url: https://github.com/soundphilosopher/basic-grpc-service-python
+
+# Explicit navigation structure
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Examples: examples.md
+  - API Reference:
+      - Overview: reference/index.md
+      - Server: reference/server.md
+      - Basic Service: reference/services.basic_service.md
+      - Eliza Chatbot: reference/utils.eliza.md
+      - Utilities: reference/utils.some.md
+  - Development: development.md
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - scripts/gen_ref_pages.py
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_root_heading: true
+            show_source: true
+            show_root_full_path: false
+            show_object_full_path: false
+            show_category_heading: true
+            heading_level: 2
+            ignore_init_summary: true
+            separate_signature: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator:
+        !!python/name:material.extensions.emoji.to_svg # Watch additional directories for changes during development
+
+
+watch:
+  - services/
+  - utils/
+  - server.py
