@@ -1,6 +1,5 @@
 #!/bin/bash
-# File: basic-grpc-service-python/setup_docs.sh
-# 📚 Quick setup script for MkDocs documentation
+# 📚 Quick deploy script for MkDocs documentation
 
 set -e
 
