@@ -46,6 +46,8 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
+    - content.action.edit
+    - content.action.view
 
 plugins:
   - search
@@ -79,11 +81,10 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.mark
   - attr_list
+  - md_in_html
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator:
-        !!python/name:material.extensions.emoji.to_svg # Watch additional directories for changes during development
-
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 watch:
   - services/
