@@ -11,6 +11,7 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - Examples: examples.md
+  - Testing: testing.md
   - API Reference:
       - Overview: reference/index.md
       - Server: reference/server.md

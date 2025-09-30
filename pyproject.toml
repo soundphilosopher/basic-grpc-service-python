@@ -41,3 +41,11 @@ include = ["*"]
 
 [tool.pyright]
 exclude = ["**/node_modules", "**/__pycache__", "sdk/**"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+minversion = "6.0"

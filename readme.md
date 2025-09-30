@@ -85,6 +85,25 @@ You should see something like:
 {"level": "INFO", "message": "gRPC server listening on https://127.0.0.1:8443 (HTTP/2)", "time": "2024-01-01T12:00:00.000Z"}
 ```
 
+### 4. 🧪 Run Tests (Optional)
+
+Verify everything is working with our comprehensive test suite:
+
+```bash
+# Run all tests with coverage
+./scripts/run_tests.sh --coverage
+
+# Or just run basic tests
+./scripts/run_tests.sh
+```
+
+The test suite includes:
+- ✅ **80+ test cases** covering all functionality
+- ✅ **Eliza chatbot** pattern matching and conversations
+- ✅ **gRPC service methods** with streaming and async testing
+- ✅ **Edge cases** and error handling scenarios
+- ✅ **Integration tests** for end-to-end verification
+
 ## 📚 Documentation
 
 This project includes comprehensive documentation built with **MkDocs** and deployed to **GitHub Pages**.
@@ -167,6 +186,177 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
+## 🧪 Testing
+
+This project includes comprehensive test coverage for all major components with both unit tests and integration scenarios.
+
+### 📊 Test Coverage
+
+- **✅ Eliza Chatbot** (`utils/eliza.py`) - Comprehensive pattern matching, conversation flow, and edge cases
+- **✅ BasicService** (`services/basic_service.py`) - All gRPC methods, streaming, CloudEvents, and error handling
+- **✅ Integration Tests** - End-to-end service behavior and component interaction
+- **⚡ Async Support** - Full async/await testing with proper pytest-asyncio configuration
+
+### 🚀 Quick Test Run
+
+```bash
+# Run all tests (recommended)
+./scripts/run_tests.sh
+
+# Run with coverage reporting
+./scripts/run_tests.sh --coverage
+
+# Fast run (skip dependency install)
+./scripts/run_tests.sh --fast --verbose
+```
+
+### 🔧 Manual Testing Options
+
+```bash
+# Run all tests
+python -m pytest tests/ -v --asyncio-mode=auto
+
+# Run specific test files
+python -m pytest tests/test_eliza.py -v
+python -m pytest tests/test_basic_service.py -v --asyncio-mode=auto
+
+# Run with coverage
+python -m pytest tests/ --cov=services --cov=utils --cov-report=html
+
+# Run specific test classes or methods
+python -m pytest tests/test_basic_service.py::TestHelloMethod -v
+python -m pytest tests/test_eliza.py::TestGoodbyeDetection::test_goodbye_simple -v
+```
+
+### 📋 Test Structure
+
+```
+tests/
+├── 📄 conftest.py              # pytest configuration and fixtures
+├── 🧠 test_eliza.py            # Eliza chatbot tests (80+ test cases)
+├── ⚡ test_basic_service.py     # gRPC service tests (40+ test cases)
+└── 📊 htmlcov/                 # Coverage reports (generated)
+```
+
+### 🎯 Test Categories
+
+#### **Eliza Chatbot Tests**
+- ✅ **Pattern Matching**: Apology, family, dream, emotion patterns
+- ✅ **Conversation Flow**: Multi-turn conversations and context handling
+- ✅ **Goodbye Detection**: Various farewell patterns and termination
+- ✅ **Edge Cases**: Empty input, special characters, very long messages
+- ✅ **Response Variety**: Randomization and template selection
+
+#### **BasicService gRPC Tests**
+- ✅ **Hello Method**: Unary RPC with CloudEvent wrapping
+- ✅ **Talk Method**: Bidirectional streaming with Eliza integration
+- ✅ **Background Method**: Server streaming with async task orchestration
+- ✅ **Error Handling**: Cancellation, timeouts, and service failures
+- ✅ **CloudEvents**: Proper event structure and metadata validation
+
+#### **Integration Tests**
+- ✅ **Service Integration**: Components working together
+- ✅ **Async Behavior**: Proper async/await patterns
+- ✅ **Resource Management**: Cleanup and memory handling
+
+### 🐛 Debugging Failed Tests
+
+If tests fail, here's how to debug:
+
+```bash
+# Run with maximum verbosity
+./scripts/run_tests.sh --verbose
+
+# Run specific failing test
+python -m pytest tests/test_basic_service.py::TestBackgroundMethod::test_background_timestamps -vvv -s
+
+# Check logs and output
+python -m pytest tests/ -v --tb=long --capture=no
+
+# Run tests with pdb debugger
+python -m pytest tests/test_eliza.py --pdb
+```
+
+### 📊 Coverage Reports
+
+Generate and view test coverage:
+
+```bash
+# Generate coverage report
+./scripts/run_tests.sh --coverage
+
+# View HTML coverage report
+python -m http.server 8000 -d htmlcov/
+# Open: http://localhost:8000
+
+# View terminal coverage summary
+coverage report -m
+```
+
+### ⚙️ Test Configuration
+
+Tests are configured via `pyproject.toml`:
+
+```toml
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+```
+
+### 🔧 Adding New Tests
+
+When adding new functionality, follow these patterns:
+
+```python
+# tests/test_your_feature.py
+import pytest
+from unittest.mock import AsyncMock
+
+# For async tests
+@pytest.mark.asyncio
+async def test_your_async_function():
+    """Test description."""
+    # Your test code here
+    assert result == expected
+
+# For gRPC service tests
+@pytest.mark.asyncio
+async def test_grpc_method():
+    """Test gRPC method."""
+    service = BasicServiceImpl()
+    context = AsyncMock(spec=grpc.aio.ServicerContext)
+
+    request = YourRequest(field="value")
+    response = await service.YourMethod(request, context)
+
+    assert response.field == "expected"
+```
+
+### 🎯 Testing Best Practices
+
+- ✅ **Test behavior, not implementation** - Focus on what the code should do
+- ✅ **Use descriptive test names** - `test_hello_with_empty_message_returns_valid_response`
+- ✅ **Test edge cases** - Empty inputs, very long inputs, special characters
+- ✅ **Mock external dependencies** - Use `AsyncMock` for gRPC contexts
+- ✅ **Test async code properly** - Use `@pytest.mark.asyncio`
+- ✅ **Verify both success and failure paths** - Test error conditions too
+
+### 🚀 Continuous Integration
+
+Tests run automatically in CI/CD pipelines. To ensure your changes pass:
+
+```bash
+# Before committing, run the full test suite
+./scripts/run_tests.sh --coverage
+
+# Fix any failing tests
+# Ensure coverage stays above 80%
+# Verify all edge cases are covered
+```
+
 ## 🏗️ Project Structure
 
 ```
@@ -182,6 +372,11 @@ basic-grpc-service-python/
 ├── 📁 utils/                    # Utility modules
 │   ├── eliza.py                 # ELIZA chatbot implementation
 │   └── some.py                  # CloudEvents and helper functions
+├── 📁 tests/                    # 🧪 Comprehensive test suite
+│   ├── conftest.py              # pytest configuration and fixtures
+│   ├── test_eliza.py            # Eliza chatbot tests (80+ cases)
+│   ├── test_basic_service.py    # gRPC service tests (40+ cases)
+│   └── htmlcov/                 # Coverage reports (generated)
 ├── 📁 docs/                     # 🆕 MkDocs documentation source
 │   ├── index.md                 # Documentation homepage
 │   ├── getting-started.md       # Setup and installation guide
@@ -190,6 +385,7 @@ basic-grpc-service-python/
 ├── 📁 scripts/                  # 🆕 Automation scripts
 │   ├── setup_docs.sh            # Build and serve docs locally
 │   ├── deploy_pages.sh          # Deploy docs to GitHub Pages
+│   ├── run_tests.sh             # 🧪 Comprehensive test runner
 │   └── gen_ref_pages.py         # Generate API reference pages
 ├── 📁 certs/                    # TLS certificates
 │   ├── local.crt               # Certificate file
@@ -295,6 +491,8 @@ grpcurl -insecure -d '{"service":"basic.v1.BasicService"}' 127.0.0.1:8443 grpc.h
 
 ## 🚀 Features
 
+- ✅ **Comprehensive test suite** with 80+ test cases and coverage reporting
+- ✅ **Automated test runner** with color-coded output and debugging tools
 - ✅ **Modular architecture** with clean separation of concerns
 - ✅ **Comprehensive documentation** with MkDocs and GitHub Pages
 - ✅ **Automated documentation deployment** with GitHub Actions
@@ -340,6 +538,16 @@ If documentation doesn't build:
 rm -rf site/
 pip install -e ".[docs]"
 mkdocs build
+```
+
+### Test Failures
+If tests are failing:
+```bash
+# Run with detailed debugging
+./scripts/run_tests.sh --verbose
+
+# Check specific test
+python -m pytest tests/test_basic_service.py::TestHelloMethod -vvv -s
 ```
 
 ## 📝 License
