@@ -1666,11 +1666,13 @@
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>protoc<span class="w"> </span>--python_out<span class="o">=</span>sdk<span class="w"> </span>--pyi_out<span class="o">=</span>sdk<span class="w"> </span>--grpc_python_out<span class="o">=</span>sdk<span class="w"> </span>proto/basic/v1/*.proto
 </code></pre></div>
 <h3 id="generated-files">Generated Files</h3>
-<p>The code generation creates:
-- <strong>Regular Python modules</strong> (<code>*_pb2.py</code>)
-- <strong>gRPC service stubs</strong> (<code>*_pb2_grpc.py</code>)
-- <strong>Type stubs</strong> (<code>*.pyi</code>) for better IDE support
-- <strong>Package <code>__init__.py</code> files</strong> automatically</p>
+<p>The code generation creates:</p>
+<ul>
+<li><strong>Regular Python modules</strong> (<code>*_pb2.py</code>)</li>
+<li><strong>gRPC service stubs</strong> (<code>*_pb2_grpc.py</code>)</li>
+<li><strong>Type stubs</strong> (<code>*.pyi</code>) for better IDE support</li>
+<li><strong>Package <code>__init__.py</code> files</strong> automatically</li>
+</ul>
 <h2 id="manual-service-testing">🧪 Manual Service Testing</h2>
 <h3 id="start-the-development-server">Start the Development Server</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Start the server with debug logging</span>
@@ -1859,18 +1861,22 @@
 <li>All tests must pass: <code>./scripts/run_tests.sh --coverage</code></li>
 </ul>
 <h3 id="code-review-checklist">Code Review Checklist</h3>
-<p><strong>For Reviewers:</strong>
-- ✅ All tests pass
-- ✅ Coverage remains above 90%
-- ✅ Documentation updated
-- ✅ Code follows project style
-- ✅ No breaking changes (or properly documented)</p>
-<p><strong>For Contributors:</strong>
-- ✅ Self-review your changes
-- ✅ Run full test suite locally
-- ✅ Update relevant documentation
-- ✅ Test examples in documentation work
-- ✅ Check that new features are properly tested</p>
+<p><strong>For Reviewers:</strong></p>
+<ul>
+<li>✅ All tests pass</li>
+<li>✅ Coverage remains above 90%</li>
+<li>✅ Documentation updated</li>
+<li>✅ Code follows project style</li>
+<li>✅ No breaking changes (or properly documented)</li>
+</ul>
+<p><strong>For Contributors:</strong></p>
+<ul>
+<li>✅ Self-review your changes</li>
+<li>✅ Run full test suite locally</li>
+<li>✅ Update relevant documentation</li>
+<li>✅ Test examples in documentation work</li>
+<li>✅ Check that new features are properly tested</li>
+</ul>
 <h2 id="development-tips">🎯 Development Tips</h2>
 <h3 id="efficient-development-loop">Efficient Development Loop</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># 1. Make code changes</span>
