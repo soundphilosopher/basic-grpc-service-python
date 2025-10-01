@@ -207,14 +207,14 @@ class Some:
 
         Examples:
             ```python
-            some = Some()
-            now = datetime.now(timezone.utc)
-            ts = some._to_ts(now)
-            isinstance(ts, Timestamp)
+            >>> some = Some()
+            >>> now = datetime.now(timezone.utc)
+            >>> ts = some._to_ts(now)
+            >>> isinstance(ts, Timestamp)
             True
 
-            epoch_ts = some._to_ts(1640995200.0)  # Unix epoch
-            epoch_ts.seconds
+            >>> epoch_ts = some._to_ts(1640995200.0)  # Unix epoch
+            >>> epoch_ts.seconds
             1640995200
             ```
 

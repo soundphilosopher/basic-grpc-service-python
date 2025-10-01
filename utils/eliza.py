@@ -76,19 +76,19 @@ class Eliza:
 
     How Eliza Works:
 
-        1. Matches your input against predefined patterns
-        2. Reflects pronouns back at you ("I am" becomes "you are")
-        3. Responds with contextually appropriate therapeutic responses
-        4. Falls back to generic responses when confused
-        5. Recognizes goodbye patterns to end conversations gracefully
+    1. Matches your input against predefined patterns
+    2. Reflects pronouns back at you ("I am" becomes "you are")
+    3. Responds with contextually appropriate therapeutic responses
+    4. Falls back to generic responses when confused
+    5. Recognizes goodbye patterns to end conversations gracefully
 
     Therapeutic Specialties:
 
-        - Active listening (pattern matching style!)
-        - Pronoun reflection therapy
-        - Question deflection techniques
-        - Family inquiry methods
-        - Emotional validation responses
+    - Active listening (pattern matching style!)
+    - Pronoun reflection therapy
+    - Question deflection techniques
+    - Family inquiry methods
+    - Emotional validation responses
 
     Example Session:
 
@@ -279,8 +279,8 @@ class Eliza:
 
         Example:
             ```python
-            eliza = Eliza()
-            eliza._Eliza__reflect("I am feeling happy")
+            >>> eliza = Eliza()
+            >>> eliza._Eliza__reflect("I am feeling happy")
             "you are feeling happy"
             ```
 
@@ -332,13 +332,13 @@ class Eliza:
 
         Examples:
             ```python
-            eliza = Eliza()
-            reply = eliza.reply("I am feeling sad")
-            reply.text
+            >>> eliza = Eliza()
+            >>> reply = eliza.reply("I am feeling sad")
+            >>> reply.text
             "Did you come to me because you are feeling sad?"
 
-            reply = eliza.reply("goodbye")
-            reply.goodbye
+            >>> reply = eliza.reply("goodbye")
+            >>> reply.goodbye
             True
             ```
 
