@@ -850,18 +850,22 @@
 <p>A delightfully secure and robust gRPC server implementation that serves your basic service
 with TLS encryption, health checks, and graceful shutdown capabilities. Because who doesn't
 love a server that knows how to say goodbye properly? 👋</p>
-<p>This module provides the main server entry point for the Basic gRPC service, complete with:
-- SSL/TLS security (because security is not optional!)
-- Health checking (to keep your service feeling great)
-- Server reflection (for introspection and debugging)
-- Graceful shutdown handling (because abrupt endings are for bad movies)</p>
+<p>This module provides the main server entry point for the Basic gRPC service, complete with:</p>
+<ul>
+<li>SSL/TLS security (because security is not optional!)</li>
+<li>Health checking (to keep your service feeling great)</li>
+<li>Server reflection (for introspection and debugging)</li>
+<li>Graceful shutdown handling (because abrupt endings are for bad movies)</li>
+</ul>
 
 
 <details class="example" open>
   <summary>Example</summary>
   <p>Run the server directly from the command line:</p>
-<p>$ python server.py</p>
-<p>The server will start listening on https://127.0.0.1:8443 with JSON logging.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>python<span class="w"> </span>server.py
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>The<span class="w"> </span>server<span class="w"> </span>will<span class="w"> </span>start<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span>https://127.0.0.1:8443<span class="w"> </span>with<span class="w"> </span>JSON<span class="w"> </span>logging.
+</code></pre></div>
 </details>        <p>Author: The gRPC Wizards ✨</p>
 
 
@@ -902,12 +906,14 @@ love a server that knows how to say goodbye properly? 👋</p>
     <div class="doc doc-contents ">
 
         <p>🎪 The main circus tent where all the gRPC magic happens!</p>
-<p>Spins up a fully-featured gRPC server with all the bells and whistles:
-- TLS encryption using local certificates
-- Service implementation registration
-- Health check endpoint (because health matters!)
-- Server reflection for easy debugging
-- Graceful shutdown handling (the polite way to exit)</p>
+<p>Spins up a fully-featured gRPC server with all the bells and whistles:</p>
+<ul>
+<li>TLS encryption using local certificates</li>
+<li>Service implementation registration</li>
+<li>Health check endpoint (because health matters!)</li>
+<li>Server reflection for easy debugging</li>
+<li>Graceful shutdown handling (the polite way to exit)</li>
+</ul>
 <p>The server listens on 127.0.0.1:8443 and uses HTTP/2 for that modern touch.
 When shutdown signals are received (SIGINT, SIGTERM), the server gracefully
 stops accepting new requests and allows existing ones up to 10 seconds to complete.</p>
@@ -948,17 +954,16 @@ stops accepting new requests and allows existing ones up to 10 seconds to comple
 
 <details class="note" open>
   <summary>Note</summary>
-  <p>Make sure you have valid TLS certificates in the certs/ directory:
-- certs/local.crt (certificate file)
-- certs/local.key (private key file)</p>
+  <p>Make sure you have valid TLS certificates in the certs/ directory:</p>
+<ul>
+<li>certs/local.crt (certificate file)</li>
+<li>certs/local.key (private key file)</li>
+</ul>
 </details>
 
             <details class="quote">
               <summary>Source code in <code>server.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
-<span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
-<span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
-<span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
 <span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
 <span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
 <span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
@@ -1061,113 +1066,120 @@ stops accepting new requests and allows existing ones up to 10 seconds to comple
 <span class="normal"><a href="#__codelineno-0-142">142</a></span>
 <span class="normal"><a href="#__codelineno-0-143">143</a></span>
 <span class="normal"><a href="#__codelineno-0-144">144</a></span>
-<span class="normal"><a href="#__codelineno-0-145">145</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">serve</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">    🎪 The main circus tent where all the gRPC magic happens!</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">    Spins up a fully-featured gRPC server with all the bells and whistles:</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">    - TLS encryption using local certificates</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">    - Service implementation registration</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    - Health check endpoint (because health matters!)</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">    - Server reflection for easy debugging</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">    - Graceful shutdown handling (the polite way to exit)</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">    The server listens on 127.0.0.1:8443 and uses HTTP/2 for that modern touch.</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    When shutdown signals are received (SIGINT, SIGTERM), the server gracefully</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">    stops accepting new requests and allows existing ones up to 10 seconds to complete.</span>
+<span class="normal"><a href="#__codelineno-0-145">145</a></span>
+<span class="normal"><a href="#__codelineno-0-146">146</a></span>
+<span class="normal"><a href="#__codelineno-0-147">147</a></span>
+<span class="normal"><a href="#__codelineno-0-148">148</a></span>
+<span class="normal"><a href="#__codelineno-0-149">149</a></span>
+<span class="normal"><a href="#__codelineno-0-150">150</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">serve</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">    🎪 The main circus tent where all the gRPC magic happens!</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    Spins up a fully-featured gRPC server with all the bells and whistles:</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">    - TLS encryption using local certificates</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">    - Service implementation registration</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">    - Health check endpoint (because health matters!)</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    - Server reflection for easy debugging</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">    - Graceful shutdown handling (the polite way to exit)</span>
 <a id="__codelineno-0-53" name="__codelineno-0-53"></a>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">    Raises:</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        FileNotFoundError: If the TLS certificate files are missing from certs/</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        grpc.RpcError: If there are issues starting the gRPC server</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">    The server listens on 127.0.0.1:8443 and uses HTTP/2 for that modern touch.</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">    When shutdown signals are received (SIGINT, SIGTERM), the server gracefully</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    stops accepting new requests and allows existing ones up to 10 seconds to complete.</span>
 <a id="__codelineno-0-57" name="__codelineno-0-57"></a>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    Note:</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        Make sure you have valid TLS certificates in the certs/ directory:</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        - certs/local.crt (certificate file)</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        - certs/local.key (private key file)</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="c1"># Load TLS credentials like a boss 🔐</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="c1"># (Because plain HTTP is so 1990s)</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;certs/local.crt&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>        <span class="n">cert</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;certs/local.key&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>        <span class="n">key</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="n">server_creds</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">ssl_server_credentials</span><span class="p">(</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>        <span class="n">private_key_certificate_chain_pairs</span><span class="o">=</span><span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">cert</span><span class="p">)],</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a>        <span class="n">root_certificates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>        <span class="n">require_client_auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># We&#39;re friendly, no client certs required</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="p">)</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="c1"># Create our shiny new server instance</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="n">server</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">aio</span><span class="o">.</span><span class="n">server</span><span class="p">()</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="c1"># Register our basic service implementation</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a>    <span class="c1"># (This is where the actual business logic lives!)</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="n">basic_pb2_grpc</span><span class="o">.</span><span class="n">add_BasicServiceServicer_to_server</span><span class="p">(</span><span class="n">BasicServiceImpl</span><span class="p">(),</span> <span class="n">server</span><span class="p">)</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="c1"># Enable reflection for debugging and introspection</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="c1"># (Because sometimes you need to look in the mirror)</span>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="n">reflection</span><span class="o">.</span><span class="n">enable_server_reflection</span><span class="p">([</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a>        <span class="n">basic_pb2</span><span class="o">.</span><span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">services_by_name</span><span class="p">[</span><span class="s1">&#39;BasicService&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">full_name</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="p">],</span> <span class="n">server</span><span class="p">)</span>
-<a id="__codelineno-0-88" name="__codelineno-0-88"></a>
-<a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="c1"># Set up health checking service</span>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="c1"># (Keep your service healthy, just like eating your vegetables 🥕)</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a>    <span class="n">health_servicer</span> <span class="o">=</span> <span class="n">health</span><span class="o">.</span><span class="n">HealthServicer</span><span class="p">(</span>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a>        <span class="n">experimental_non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<a id="__codelineno-0-93" name="__codelineno-0-93"></a>        <span class="n">experimental_thread_pool</span><span class="o">=</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="p">)</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a>
-<a id="__codelineno-0-96" name="__codelineno-0-96"></a>    <span class="c1"># Set health status for the overall server and specific service</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a>    <span class="n">health_servicer</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">health_pb2</span><span class="o">.</span><span class="n">HealthCheckResponse</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">)</span>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a>    <span class="n">health_servicer</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
-<a id="__codelineno-0-99" name="__codelineno-0-99"></a>        <span class="n">basic_pb2</span><span class="o">.</span><span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">services_by_name</span><span class="p">[</span><span class="s1">&#39;BasicService&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a>        <span class="n">health_pb2</span><span class="o">.</span><span class="n">HealthCheckResponse</span><span class="o">.</span><span class="n">SERVING</span>
-<a id="__codelineno-0-101" name="__codelineno-0-101"></a>    <span class="p">)</span>
-<a id="__codelineno-0-102" name="__codelineno-0-102"></a>
-<a id="__codelineno-0-103" name="__codelineno-0-103"></a>    <span class="n">health_pb2_grpc</span><span class="o">.</span><span class="n">add_HealthServicer_to_server</span><span class="p">(</span><span class="n">health_servicer</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
-<a id="__codelineno-0-104" name="__codelineno-0-104"></a>
-<a id="__codelineno-0-105" name="__codelineno-0-105"></a>    <span class="c1"># Bind to our local address with TLS</span>
-<a id="__codelineno-0-106" name="__codelineno-0-106"></a>    <span class="n">server</span><span class="o">.</span><span class="n">add_secure_port</span><span class="p">(</span><span class="s2">&quot;127.0.0.1:8443&quot;</span><span class="p">,</span> <span class="n">server_creds</span><span class="p">)</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    Raises:</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        FileNotFoundError: If the TLS certificate files are missing from certs/</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        grpc.RpcError: If there are issues starting the gRPC server</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">    Note:</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">        Make sure you have valid TLS certificates in the certs/ directory:</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">        - certs/local.crt (certificate file)</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">        - certs/local.key (private key file)</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="c1"># Load TLS credentials like a boss 🔐</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="c1"># (Because plain HTTP is so 1990s)</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;certs/local.crt&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>        <span class="n">cert</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;certs/local.key&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>        <span class="n">key</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="n">server_creds</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">ssl_server_credentials</span><span class="p">(</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>        <span class="n">private_key_certificate_chain_pairs</span><span class="o">=</span><span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">cert</span><span class="p">)],</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>        <span class="n">root_certificates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>        <span class="n">require_client_auth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># We&#39;re friendly, no client certs required</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="p">)</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="c1"># Create our shiny new server instance</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>    <span class="n">server</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">aio</span><span class="o">.</span><span class="n">server</span><span class="p">()</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="c1"># Register our basic service implementation</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="c1"># (This is where the actual business logic lives!)</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>    <span class="n">basic_pb2_grpc</span><span class="o">.</span><span class="n">add_BasicServiceServicer_to_server</span><span class="p">(</span><span class="n">BasicServiceImpl</span><span class="p">(),</span> <span class="n">server</span><span class="p">)</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="c1"># Enable reflection for debugging and introspection</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="c1"># (Because sometimes you need to look in the mirror)</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="n">reflection</span><span class="o">.</span><span class="n">enable_server_reflection</span><span class="p">([</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="n">basic_pb2</span><span class="o">.</span><span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">services_by_name</span><span class="p">[</span><span class="s1">&#39;BasicService&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">full_name</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="p">],</span> <span class="n">server</span><span class="p">)</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="c1"># Set up health checking service</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="c1"># (Keep your service healthy, just like eating your vegetables 🥕)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>    <span class="n">health_servicer</span> <span class="o">=</span> <span class="n">health</span><span class="o">.</span><span class="n">HealthServicer</span><span class="p">(</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>        <span class="n">experimental_non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>        <span class="n">experimental_thread_pool</span><span class="o">=</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>    <span class="p">)</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>    <span class="c1"># Set health status for the overall server and specific service</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>    <span class="n">health_servicer</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">health_pb2</span><span class="o">.</span><span class="n">HealthCheckResponse</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">)</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>    <span class="n">health_servicer</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>        <span class="n">basic_pb2</span><span class="o">.</span><span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">services_by_name</span><span class="p">[</span><span class="s1">&#39;BasicService&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>        <span class="n">health_pb2</span><span class="o">.</span><span class="n">HealthCheckResponse</span><span class="o">.</span><span class="n">SERVING</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>    <span class="p">)</span>
 <a id="__codelineno-0-107" name="__codelineno-0-107"></a>
-<a id="__codelineno-0-108" name="__codelineno-0-108"></a>    <span class="c1"># 🚀 Launch sequence initiated!</span>
-<a id="__codelineno-0-109" name="__codelineno-0-109"></a>    <span class="k">await</span> <span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<a id="__codelineno-0-110" name="__codelineno-0-110"></a>    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;gRPC server listening on https://127.0.0.1:8443 (HTTP/2)&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a>
-<a id="__codelineno-0-112" name="__codelineno-0-112"></a>    <span class="c1"># ---- Graceful shutdown orchestration ----</span>
-<a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="c1"># (Because good servers know how to make a graceful exit)</span>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a>    <span class="n">stop_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
-<a id="__codelineno-0-115" name="__codelineno-0-115"></a>    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>    <span class="n">health_pb2_grpc</span><span class="o">.</span><span class="n">add_HealthServicer_to_server</span><span class="p">(</span><span class="n">health_servicer</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a>    <span class="c1"># Bind to our local address with TLS</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>    <span class="n">server</span><span class="o">.</span><span class="n">add_secure_port</span><span class="p">(</span><span class="s2">&quot;127.0.0.1:8443&quot;</span><span class="p">,</span> <span class="n">server_creds</span><span class="p">)</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="c1"># 🚀 Launch sequence initiated!</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>    <span class="k">await</span> <span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a>    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;gRPC server listening on https://127.0.0.1:8443 (HTTP/2)&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-116" name="__codelineno-0-116"></a>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_signal_handler</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-119" name="__codelineno-0-119"></a><span class="sd">        🛑 The polite way to ask the server to stop.</span>
-<a id="__codelineno-0-120" name="__codelineno-0-120"></a>
-<a id="__codelineno-0-121" name="__codelineno-0-121"></a><span class="sd">        This signal handler sets the stop event, which triggers the graceful</span>
-<a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="sd">        shutdown sequence. It&#39;s idempotent, so multiple signals won&#39;t cause issues.</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="sd">        Think of it as the server&#39;s &quot;please wrap up what you&#39;re doing&quot; bell.</span>
-<a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-125" name="__codelineno-0-125"></a>        <span class="n">stop_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-<a id="__codelineno-0-126" name="__codelineno-0-126"></a>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a>    <span class="c1"># Register signal handlers for graceful shutdown</span>
-<a id="__codelineno-0-128" name="__codelineno-0-128"></a>    <span class="c1"># (SIGINT = Ctrl+C, SIGTERM = polite termination request)</span>
-<a id="__codelineno-0-129" name="__codelineno-0-129"></a>    <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGTERM</span><span class="p">):</span>
-<a id="__codelineno-0-130" name="__codelineno-0-130"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-131" name="__codelineno-0-131"></a>            <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">_signal_handler</span><span class="p">)</span>
-<a id="__codelineno-0-132" name="__codelineno-0-132"></a>        <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
-<a id="__codelineno-0-133" name="__codelineno-0-133"></a>            <span class="c1"># Windows or environments that don&#39;t support signal handling in event loops</span>
-<a id="__codelineno-0-134" name="__codelineno-0-134"></a>            <span class="c1"># (Windows, you&#39;re special, but not in a bad way... mostly)</span>
-<a id="__codelineno-0-135" name="__codelineno-0-135"></a>            <span class="k">pass</span>
-<a id="__codelineno-0-136" name="__codelineno-0-136"></a>
-<a id="__codelineno-0-137" name="__codelineno-0-137"></a>    <span class="c1"># Wait for the stop signal like a patient butler</span>
-<a id="__codelineno-0-138" name="__codelineno-0-138"></a>    <span class="k">await</span> <span class="n">stop_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-<a id="__codelineno-0-139" name="__codelineno-0-139"></a>
-<a id="__codelineno-0-140" name="__codelineno-0-140"></a>    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Shutting down gracefully... (waiting up to 10s for in-flight RPCs)&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>    <span class="c1"># ---- Graceful shutdown orchestration ----</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a>    <span class="c1"># (Because good servers know how to make a graceful exit)</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>    <span class="n">stop_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a>    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_signal_handler</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="sd">        🛑 The polite way to ask the server to stop.</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a><span class="sd">        This signal handler sets the stop event, which triggers the graceful</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="sd">        shutdown sequence. It&#39;s idempotent, so multiple signals won&#39;t cause issues.</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a><span class="sd">        Think of it as the server&#39;s &quot;please wrap up what you&#39;re doing&quot; bell.</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a>        <span class="n">stop_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a>    <span class="c1"># Register signal handlers for graceful shutdown</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133"></a>    <span class="c1"># (SIGINT = Ctrl+C, SIGTERM = polite termination request)</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134"></a>    <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGTERM</span><span class="p">):</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136"></a>            <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">_signal_handler</span><span class="p">)</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a>        <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138"></a>            <span class="c1"># Windows or environments that don&#39;t support signal handling in event loops</span>
+<a id="__codelineno-0-139" name="__codelineno-0-139"></a>            <span class="c1"># (Windows, you&#39;re special, but not in a bad way... mostly)</span>
+<a id="__codelineno-0-140" name="__codelineno-0-140"></a>            <span class="k">pass</span>
 <a id="__codelineno-0-141" name="__codelineno-0-141"></a>
-<a id="__codelineno-0-142" name="__codelineno-0-142"></a>    <span class="c1"># Grace period: Stop accepting new requests, allow existing ones to complete</span>
-<a id="__codelineno-0-143" name="__codelineno-0-143"></a>    <span class="c1"># (10 seconds should be enough for most polite RPCs to finish their business)</span>
-<a id="__codelineno-0-144" name="__codelineno-0-144"></a>    <span class="k">await</span> <span class="n">server</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="n">grace</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
-<a id="__codelineno-0-145" name="__codelineno-0-145"></a>    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Shutdown complete. Thanks for using our service! 👋&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-142" name="__codelineno-0-142"></a>    <span class="c1"># Wait for the stop signal like a patient butler</span>
+<a id="__codelineno-0-143" name="__codelineno-0-143"></a>    <span class="k">await</span> <span class="n">stop_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+<a id="__codelineno-0-144" name="__codelineno-0-144"></a>
+<a id="__codelineno-0-145" name="__codelineno-0-145"></a>    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Shutting down gracefully... (waiting up to 10s for in-flight RPCs)&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-146" name="__codelineno-0-146"></a>
+<a id="__codelineno-0-147" name="__codelineno-0-147"></a>    <span class="c1"># Grace period: Stop accepting new requests, allow existing ones to complete</span>
+<a id="__codelineno-0-148" name="__codelineno-0-148"></a>    <span class="c1"># (10 seconds should be enough for most polite RPCs to finish their business)</span>
+<a id="__codelineno-0-149" name="__codelineno-0-149"></a>    <span class="k">await</span> <span class="n">server</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="n">grace</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<a id="__codelineno-0-150" name="__codelineno-0-150"></a>    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Shutdown complete. Thanks for using our service! 👋&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
