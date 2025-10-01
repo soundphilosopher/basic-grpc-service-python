@@ -1377,14 +1377,14 @@ friend who always knows how to format timestamps correctly. 👯‍♀️</p>
 <a id="__codelineno-0-207" name="__codelineno-0-207"></a>
 <a id="__codelineno-0-208" name="__codelineno-0-208"></a><span class="sd">        Examples:</span>
 <a id="__codelineno-0-209" name="__codelineno-0-209"></a><span class="sd">            ```python</span>
-<a id="__codelineno-0-210" name="__codelineno-0-210"></a><span class="sd">            some = Some()</span>
-<a id="__codelineno-0-211" name="__codelineno-0-211"></a><span class="sd">            now = datetime.now(timezone.utc)</span>
-<a id="__codelineno-0-212" name="__codelineno-0-212"></a><span class="sd">            ts = some._to_ts(now)</span>
-<a id="__codelineno-0-213" name="__codelineno-0-213"></a><span class="sd">            isinstance(ts, Timestamp)</span>
+<a id="__codelineno-0-210" name="__codelineno-0-210"></a><span class="sd">            &gt;&gt;&gt; some = Some()</span>
+<a id="__codelineno-0-211" name="__codelineno-0-211"></a><span class="sd">            &gt;&gt;&gt; now = datetime.now(timezone.utc)</span>
+<a id="__codelineno-0-212" name="__codelineno-0-212"></a><span class="sd">            &gt;&gt;&gt; ts = some._to_ts(now)</span>
+<a id="__codelineno-0-213" name="__codelineno-0-213"></a><span class="sd">            &gt;&gt;&gt; isinstance(ts, Timestamp)</span>
 <a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="sd">            True</span>
 <a id="__codelineno-0-215" name="__codelineno-0-215"></a>
-<a id="__codelineno-0-216" name="__codelineno-0-216"></a><span class="sd">            epoch_ts = some._to_ts(1640995200.0)  # Unix epoch</span>
-<a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">            epoch_ts.seconds</span>
+<a id="__codelineno-0-216" name="__codelineno-0-216"></a><span class="sd">            &gt;&gt;&gt; epoch_ts = some._to_ts(1640995200.0)  # Unix epoch</span>
+<a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">            &gt;&gt;&gt; epoch_ts.seconds</span>
 <a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="sd">            1640995200</span>
 <a id="__codelineno-0-219" name="__codelineno-0-219"></a><span class="sd">            ```</span>
 <a id="__codelineno-0-220" name="__codelineno-0-220"></a>
