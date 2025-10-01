@@ -105,6 +105,7 @@ Your gRPC service is ready for production! 🚀
 ### What Gets Tested
 
 Our test suite covers:
+
 - ✅ **Eliza Chatbot** (40+ tests) - Pattern matching, conversations, edge cases
 - ✅ **gRPC Service** (40+ tests) - All methods, streaming, CloudEvents, errors
 - ✅ **Integration** - Components working together
@@ -225,6 +226,7 @@ python -c "from services.basic_service import BasicServiceImpl; print('OK')"
 ### Getting Help
 
 If you're still having issues:
+
 1. Check our **[Development Guide](development.md)** for detailed troubleshooting
 2. Review the **[Testing Guide](testing.md)** for test-specific issues
 3. Look at the **[Examples](examples.md)** for working code samples

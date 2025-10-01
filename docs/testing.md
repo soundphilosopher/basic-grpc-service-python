@@ -75,6 +75,7 @@ Options:
 Our Eliza implementation has extensive test coverage:
 
 ### Pattern Matching Tests
+
 ```python
 def test_apology_handling_simple():
     """Test responses to simple apology."""
@@ -85,6 +86,7 @@ def test_apology_handling_simple():
 ```
 
 ### Conversation Flow Tests
+
 ```python
 def test_basic_conversation():
     """Test a complete conversation flow."""
@@ -103,6 +105,7 @@ def test_basic_conversation():
 ```
 
 ### Edge Case Testing
+
 - **Empty inputs** → "Please say something."
 - **Special characters** → Handled gracefully
 - **Very long messages** → Processed without errors
@@ -113,6 +116,7 @@ def test_basic_conversation():
 Comprehensive testing of all service methods:
 
 ### Hello Method Tests
+
 ```python
 @pytest.mark.asyncio
 async def test_hello_basic_greeting():
@@ -130,6 +134,7 @@ async def test_hello_basic_greeting():
 ```
 
 ### Talk Method Tests (Streaming)
+
 ```python
 @pytest.mark.asyncio
 async def test_talk_conversation():
@@ -152,6 +157,7 @@ async def test_talk_conversation():
 ```
 
 ### Background Method Tests (Server Streaming)
+
 ```python
 @pytest.mark.asyncio
 async def test_background_multiple_processes():
@@ -197,6 +203,7 @@ We maintain high coverage standards:
 ### Reading Coverage Reports
 
 The HTML coverage report shows:
+
 - **Green lines** → Covered by tests ✅
 - **Red lines** → Not covered ❌
 - **Yellow lines** → Partially covered ⚠️
@@ -206,6 +213,7 @@ The HTML coverage report shows:
 ### Common Test Failures
 
 #### 1. **Import Errors**
+
 ```bash
 # Fix: Ensure proper installation
 python -m pip install -e ".[dev]"
@@ -215,6 +223,7 @@ export PYTHONPATH="$PYTHONPATH:$(pwd):$(pwd)/sdk"
 ```
 
 #### 2. **Async Test Issues**
+
 ```bash
 # Fix: Use proper asyncio mode
 python -m pytest tests/ --asyncio-mode=auto
@@ -224,6 +233,7 @@ python -m pytest tests/test_basic_service.py::TestBackgroundMethod -v --asyncio-
 ```
 
 #### 3. **Timezone/DateTime Errors**
+
 ```bash
 # Run specific failing test with max verbosity
 python -m pytest tests/test_basic_service.py::TestBackgroundMethod::test_background_timestamps -vvv -s

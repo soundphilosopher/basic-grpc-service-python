@@ -34,12 +34,15 @@ Welcome to the **Basic gRPC Service** documentation! This is a modern Python gRP
 ## 🌟 Key Features
 
 ### Real-time Communication
+
 Our service supports bidirectional streaming, perfect for chat applications and real-time data feeds.
 
 ### Background Processing
+
 Demonstrate parallel task execution with the Background method - run multiple tasks and get live progress updates.
 
 ### Enterprise Ready
+
 Built with CloudEvents, structured logging, health checks, and graceful shutdown handling.
 
 ## 🔧 Architecture

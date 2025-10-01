@@ -125,6 +125,7 @@ protoc --python_out=sdk --pyi_out=sdk --grpc_python_out=sdk proto/basic/v1/*.pro
 ### Generated Files
 
 The code generation creates:
+
 - **Regular Python modules** (`*_pb2.py`)
 - **gRPC service stubs** (`*_pb2_grpc.py`)
 - **Type stubs** (`*.pyi`) for better IDE support
@@ -358,6 +359,7 @@ mkdocs gh-deploy
 ### Code Review Checklist
 
 **For Reviewers:**
+
 - ✅ All tests pass
 - ✅ Coverage remains above 90%
 - ✅ Documentation updated
@@ -365,6 +367,7 @@ mkdocs gh-deploy
 - ✅ No breaking changes (or properly documented)
 
 **For Contributors:**
+
 - ✅ Self-review your changes
 - ✅ Run full test suite locally
 - ✅ Update relevant documentation
