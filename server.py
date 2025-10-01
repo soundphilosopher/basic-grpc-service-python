@@ -17,9 +17,9 @@ Example:
 
     ```shell
     $ python server.py
+    ```
 
     The server will start listening on https://127.0.0.1:8443 with JSON logging.
-    ```
 
 Author: The gRPC Wizards ✨
 """

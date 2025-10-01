@@ -39,11 +39,14 @@ class Reply:
         goodbye (bool): True if this response ends the conversation
 
     Example:
-        >>> reply = Reply("How does that make you feel?", False)
-        >>> reply.text
+        ```python
+        reply = Reply("How does that make you feel?", False)
+        reply.text
         "How does that make you feel?"
-        >>> reply.is_goodbye()
+
+        reply.is_goodbye()
         False
+        ```
     """
     text: str
     goodbye: bool = False
@@ -57,7 +60,7 @@ class Reply:
 
         Note:
             This is just a convenience method because sometimes calling
-            reply.is_goodbye() feels more natural than reply.goodbye! 🤷‍♀️
+            `reply.is_goodbye()` feels more natural than reply.goodbye! 🤷‍♀️
         """
         return self.goodbye
 
@@ -73,19 +76,19 @@ class Eliza:
 
     How Eliza Works:
 
-    1. Matches your input against predefined patterns
-    2. Reflects pronouns back at you ("I am" becomes "you are")
-    3. Responds with contextually appropriate therapeutic responses
-    4. Falls back to generic responses when confused
-    5. Recognizes goodbye patterns to end conversations gracefully
+        1. Matches your input against predefined patterns
+        2. Reflects pronouns back at you ("I am" becomes "you are")
+        3. Responds with contextually appropriate therapeutic responses
+        4. Falls back to generic responses when confused
+        5. Recognizes goodbye patterns to end conversations gracefully
 
     Therapeutic Specialties:
 
-    - Active listening (pattern matching style!)
-    - Pronoun reflection therapy
-    - Question deflection techniques
-    - Family inquiry methods
-    - Emotional validation responses
+        - Active listening (pattern matching style!)
+        - Pronoun reflection therapy
+        - Question deflection techniques
+        - Family inquiry methods
+        - Emotional validation responses
 
     Example Session:
 
@@ -275,9 +278,11 @@ class Eliza:
             str: The reflected text with pronouns swapped
 
         Example:
-            >>> eliza = Eliza()
-            >>> eliza._Eliza__reflect("I am feeling happy")
+            ```python
+            eliza = Eliza()
+            eliza._Eliza__reflect("I am feeling happy")
             "you are feeling happy"
+            ```
 
         Note:
             This method preserves punctuation while doing the reflection,
@@ -326,14 +331,16 @@ class Eliza:
             Reply: Eliza's thoughtful (or generic) response
 
         Examples:
-            >>> eliza = Eliza()
-            >>> reply = eliza.reply("I am feeling sad")
-            >>> reply.text
+            ```python
+            eliza = Eliza()
+            reply = eliza.reply("I am feeling sad")
+            reply.text
             "Did you come to me because you are feeling sad?"
 
-            >>> reply = eliza.reply("goodbye")
-            >>> reply.goodbye
+            reply = eliza.reply("goodbye")
+            reply.goodbye
             True
+            ```
 
         Note:
             Empty messages get a gentle nudge to actually say something.

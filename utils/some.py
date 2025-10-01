@@ -75,6 +75,7 @@ class Some:
             - Protobuf payload with proper type information
 
         Example:
+            ```python
             >>> some = Some()
             >>> response = some.build_background_response(
             ...     state=service_pb2.State.STATE_PROCESS,
@@ -82,6 +83,7 @@ class Some:
             ...     completed_at=None,
             ...     responses=[]
             ... )
+            ```
 
         Note:
             This method uses keyword-only arguments to prevent parameter mix-ups.
@@ -147,12 +149,15 @@ class Some:
             - Protocol data wrapped in SomeServiceData
 
         Example:
+            ```python
             >>> some = Some()
             >>> response = some.fake_service_response("auth-service", "grpc")
             >>> response.name
             "auth-service"
+
             >>> response.data.type
             "protocol"
+            ```
 
         Note:
             This method uses time.sleep() which blocks the thread! That's why
@@ -189,6 +194,7 @@ class Some:
 
         Args:
             time_input: The time value to convert
+
                 - datetime: Python datetime object
                 - int/float: Unix epoch seconds
                 - None: Returns None (for convenience)
@@ -200,15 +206,17 @@ class Some:
             TypeError: If the input type is not supported
 
         Examples:
-            >>> some = Some()
-            >>> now = datetime.now(timezone.utc)
-            >>> ts = some._to_ts(now)
-            >>> isinstance(ts, Timestamp)
+            ```python
+            some = Some()
+            now = datetime.now(timezone.utc)
+            ts = some._to_ts(now)
+            isinstance(ts, Timestamp)
             True
 
-            >>> epoch_ts = some._to_ts(1640995200.0)  # Unix epoch
-            >>> epoch_ts.seconds
+            epoch_ts = some._to_ts(1640995200.0)  # Unix epoch
+            epoch_ts.seconds
             1640995200
+            ```
 
         Time Zone Handling:
             - Naive datetime objects are assumed to be UTC

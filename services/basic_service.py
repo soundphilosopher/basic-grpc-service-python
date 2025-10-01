@@ -218,7 +218,7 @@ class BasicServiceImpl(basic_pb2_grpc.BasicServiceServicer):
                 worker_id (int): Unique identifier for this worker
 
             Note:
-                Uses asyncio.to_thread() to run the blocking fake_service_response
+                Uses `asyncio.to_thread()` to run the blocking fake_service_response
                 in a thread pool, keeping our async event loop happy! 😊
             """
             try:
