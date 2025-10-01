@@ -6,6 +6,7 @@ with TLS encryption, health checks, and graceful shutdown capabilities. Because 
 love a server that knows how to say goodbye properly? 👋
 
 This module provides the main server entry point for the Basic gRPC service, complete with:
+
 - SSL/TLS security (because security is not optional!)
 - Health checking (to keep your service feeling great)
 - Server reflection (for introspection and debugging)
@@ -14,9 +15,11 @@ This module provides the main server entry point for the Basic gRPC service, com
 Example:
     Run the server directly from the command line:
 
+    ```shell
     $ python server.py
 
     The server will start listening on https://127.0.0.1:8443 with JSON logging.
+    ```
 
 Author: The gRPC Wizards ✨
 """
@@ -41,6 +44,7 @@ async def serve() -> None:
     🎪 The main circus tent where all the gRPC magic happens!
 
     Spins up a fully-featured gRPC server with all the bells and whistles:
+
     - TLS encryption using local certificates
     - Service implementation registration
     - Health check endpoint (because health matters!)
@@ -57,6 +61,7 @@ async def serve() -> None:
 
     Note:
         Make sure you have valid TLS certificates in the certs/ directory:
+
         - certs/local.crt (certificate file)
         - certs/local.key (private key file)
     """

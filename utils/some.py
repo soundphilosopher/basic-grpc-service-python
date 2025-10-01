@@ -7,6 +7,7 @@ handles all the boring but necessary stuff so your main service can focus
 on being awesome! ⚡
 
 Key Features:
+
 - CloudEvent response building with proper formatting
 - Service call simulation with realistic delays
 - Timestamp conversion utilities for protobuf integration
@@ -37,6 +38,7 @@ class Some:
     🎭 The master of ceremonies for background operations and service simulation!
 
     This utility class provides essential functions for:
+
     - Building properly formatted CloudEvent responses
     - Simulating realistic service calls with delays
     - Converting between datetime formats and protobuf timestamps
@@ -123,6 +125,7 @@ class Some:
         properly formatted response. It's like method acting for microservices! 🎭
 
         Perfect for:
+
         - Testing background processing patterns
         - Demonstrating concurrent service calls
         - Creating realistic delays in development
@@ -179,6 +182,7 @@ class Some:
         It's like a universal translator for time formats! 🌍
 
         Handles multiple input formats:
+
         - datetime objects (timezone-aware preferred)
         - Unix epoch seconds (int or float)
         - Automatically converts to UTC if needed

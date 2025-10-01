@@ -10,6 +10,7 @@ Why Eliza? Because sometimes you need someone to listen, even if that someone
 is just a bunch of regular expressions pretending to care! 🤖💕
 
 Features:
+
 - Pattern-based conversation simulation
 - Pronoun reflection ("I am sad" -> "How long have you been sad?")
 - Goodbye detection for natural conversation endings
@@ -71,6 +72,7 @@ class Eliza:
     in the business (even if she's not technically real).
 
     How Eliza Works:
+
     1. Matches your input against predefined patterns
     2. Reflects pronouns back at you ("I am" becomes "you are")
     3. Responds with contextually appropriate therapeutic responses
@@ -78,6 +80,7 @@ class Eliza:
     5. Recognizes goodbye patterns to end conversations gracefully
 
     Therapeutic Specialties:
+
     - Active listening (pattern matching style!)
     - Pronoun reflection therapy
     - Question deflection techniques
@@ -85,12 +88,13 @@ class Eliza:
     - Emotional validation responses
 
     Example Session:
-        You: "I am feeling sad today"
-        Eliza: "Did you come to me because you are feeling sad today?"
-        You: "My mother never understood me"
-        Eliza: "Tell me more about your family."
-        You: "Goodbye"
-        Eliza: "Thank you for talking with me."
+
+        >>> You: "I am feeling sad today"
+        >>> Eliza: "Did you come to me because you are feeling sad today?"
+        >>> You: "My mother never understood me"
+        >>> Eliza: "Tell me more about your family."
+        >>> You: "Goodbye"
+        >>> Eliza: "Thank you for talking with me."
     """
 
     def __init__(self):
@@ -308,6 +312,7 @@ class Eliza:
         she's very good at pretending).
 
         Process:
+
         1. Check if it's a goodbye message first
         2. Try to match against therapeutic patterns
         3. If pattern matches and has groups, reflect them back

@@ -3,6 +3,7 @@
 
 This module contains the main business logic for the BasicService, implementing
 a delightfully interactive gRPC service that can:
+
 - Greet you like a friendly neighbor 👋
 - Chat with you using an AI therapist (Eliza) 🧠
 - Run background tasks like a multitasking wizard ⚡
@@ -42,6 +43,7 @@ class BasicServiceImpl(basic_pb2_grpc.BasicServiceServicer):
     3. Background - Parallel task execution with real-time progress streaming
 
     Each method demonstrates different gRPC patterns:
+
     - Unary RPC (Hello)
     - Bidirectional streaming (Talk)
     - Server streaming with background tasks (Background)
@@ -155,6 +157,7 @@ class BasicServiceImpl(basic_pb2_grpc.BasicServiceServicer):
         real-time progress updates via server streaming and handles errors gracefully.
 
         Perfect for demonstrating:
+
         - Parallel task execution with asyncio
         - Server-side streaming with progress updates
         - Error handling and recovery in distributed systems

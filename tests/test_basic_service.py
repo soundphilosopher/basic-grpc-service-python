@@ -2,6 +2,7 @@
 🧪 Tests for BasicService - Making sure our gRPC service is enterprise-ready!
 
 This test suite verifies that our BasicService implementation correctly handles:
+
 - Unary RPC calls (Hello method)
 - Bidirectional streaming (Talk method with Eliza)
 - Server streaming with background tasks (Background method)
@@ -9,6 +10,7 @@ This test suite verifies that our BasicService implementation correctly handles:
 - Error handling and edge cases
 
 Test Categories:
+
 - Hello method functionality and CloudEvent formatting
 - Talk streaming conversations with Eliza integration
 - Background task orchestration and progress streaming
