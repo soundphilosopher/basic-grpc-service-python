@@ -46,7 +46,7 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         --help)
-            echo "🧪 Basic gRPC Service Test Runner"
+            echo "  Basic gRPC Service Test Runner"
             echo ""
             echo "Usage: $0 [OPTIONS]"
             echo ""
@@ -59,26 +59,26 @@ while [[ $# -gt 0 ]]; do
             exit 0
             ;;
         *)
-            echo -e "${RED}❌ Unknown option: $1${NC}"
+            echo -e "${RED} Unknown option: $1${NC}"
             echo "Use --help for available options"
             exit 1
             ;;
     esac
 done
 
-echo -e "${CYAN}🧪 Basic gRPC Service Test Runner${NC}"
+echo -e "${CYAN}  Basic gRPC Service Test Runner${NC}"
 echo "=================================="
 
 # Check if we're in the right directory
 if [[ ! -f "pyproject.toml" ]]; then
-    echo -e "${RED}❌ Error: pyproject.toml not found${NC}"
+    echo -e "${RED} Error: pyproject.toml not found${NC}"
     echo -e "${YELLOW}Please run this script from the project root directory${NC}"
     exit 1
 fi
 
 # Install dependencies (unless --fast is specified)
 if [[ "$FAST" != true ]]; then
-    echo -e "\n${BLUE}📦 Installing dependencies...${NC}"
+    echo -e "\n${BLUE} Installing dependencies...${NC}"
 
     # Install dev dependencies
     echo "  Installing dev dependencies..."
@@ -90,17 +90,17 @@ if [[ "$FAST" != true ]]; then
         pip install coverage pytest-cov --quiet
     fi
 
-    echo -e "${GREEN}✅ Dependencies installed${NC}"
+    echo -e "${GREEN}󰗠 Dependencies installed${NC}"
 fi
 
 # Test discovery
-echo -e "\n${PURPLE}🔍 Discovering tests...${NC}"
+echo -e "\n${PURPLE} Discovering tests...${NC}"
 test_files=($(find tests -name "test_*.py" -type f))
 test_count=${#test_files[@]}
 
 echo "Found $test_count test files:"
 for file in "${test_files[@]}"; do
-    echo "  📄 $file"
+    echo "   $file"
 done
 
 # Build pytest command
@@ -119,29 +119,29 @@ if [[ "$COVERAGE" == true ]]; then
 fi
 
 # Run the tests
-echo -e "\n${YELLOW}🏗️ Running tests...${NC}"
+echo -e "\n${YELLOW}󰙨 Running tests...${NC}"
 echo "Command: $PYTEST_CMD"
 echo ""
 
 if eval $PYTEST_CMD; then
-    echo -e "\n${GREEN}🎉 All tests passed!${NC}"
+    echo -e "\n${GREEN}󱁖 All tests passed!${NC}"
 
     if [[ "$COVERAGE" == true ]]; then
-        echo -e "\n${CYAN}📊 Coverage report generated:${NC}"
-        echo "  📄 Terminal summary: shown above"
-        echo "  📊 HTML report: htmlcov/index.html"
+        echo -e "\n${CYAN} Coverage report generated:${NC}"
+        echo "   Terminal summary: shown above"
+        echo "   HTML report: htmlcov/index.html"
         echo ""
-        echo -e "${BLUE}💡 To view the HTML coverage report:${NC}"
+        echo -e "${BLUE} To view the HTML coverage report:${NC}"
         echo "  python -m http.server 8000 -d htmlcov/"
         echo "  Then open: http://localhost:8000"
     fi
 
-    echo -e "\n${GREEN}✅ Test suite completed successfully!${NC}"
-    echo -e "Your gRPC service is ready for production! 🚀"
+    echo -e "\n${GREEN}󰗠 Test suite completed successfully!${NC}"
+    echo -e "Your gRPC service is ready for production! "
 
 else
-    echo -e "\n${RED}❌ Some tests failed${NC}"
-    echo -e "${YELLOW}💡 Tips for debugging:${NC}"
+    echo -e "\n${RED} Some tests failed${NC}"
+    echo -e "${YELLOW} Tips for debugging:${NC}"
     echo "  • Run with --verbose for more detailed output"
     echo "  • Check the test output above for specific failures"
     echo "  • Make sure all dependencies are installed"
