@@ -1,2 +1,2 @@
-from eliza import Eliza
-from some import Some
+from .eliza import Eliza
+from .some import Some

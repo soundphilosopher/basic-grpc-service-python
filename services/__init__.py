@@ -1,1 +1,1 @@
-from basic_service import BasicServiceImpl
+from .basic_service import BasicServiceImpl

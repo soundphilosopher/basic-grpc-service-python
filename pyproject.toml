@@ -32,12 +32,12 @@ docs = [
     "mkdocs-section-index",
 ]
 
-[tool.setuptools]
-package-dir = { "" = "sdk" } # map top-level packages to ./sdk
+# [tool.setuptools]
+# package-dir = { "" = "sdk" } # map top-level packages to ./sdk
 
 [tool.setuptools.packages.find]
-where = ["sdk"]
-include = ["*"]
+where = [".", "sdk"]
+namespaces = true
 
 [tool.pyright]
 exclude = ["**/node_modules", "**/__pycache__", "sdk/**"]

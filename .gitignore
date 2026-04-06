@@ -3,7 +3,9 @@
 
 # python artifacts
 **/__pycache__
-/sdk/*.egg-info
+**/*.egg-info
+/.pytest_cache
+/.ropeproject
 
 # mkdocs output
 /site
